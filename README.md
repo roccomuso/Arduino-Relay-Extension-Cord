@@ -7,7 +7,7 @@ A simple relay extension cord built with Arduino, a Solid State Relay and 433 Mh
 - 1 x 433 Mhz Receiver
 - 1 x 433 Mhz Transmitter
 - 2 x Antenna (17.32cm)
-- Extension Cord
+- 1 x Extension Cord
 - 1 x SSR (Solid State Relay or classic relay if you'd prefer)
 - 1 x 12V 1A Power Supply.
 
@@ -26,6 +26,6 @@ The sender.pde is the arduino code to be uploaded to the arduino (connected to a
 The receiver.pde is the arduino code to be uploaded on the Arduino directly connected to the SSR.
 
 Each of the two arduino bot got a 433 Mhz device. (Transmitter and receiver or transreceiver if you'd prefer).
-Finally the Main-server-remote.py must run on the PC acting as a server (it directly communicate through USB with Arduino, the 'sender' one).
+Finally the Main-server-remote.py must run on the PC acting as a server (it directly communicate through USB with Arduino, the 'sender' one which itself communicate with the 'receiver' arduino through radio signals).
 
 
