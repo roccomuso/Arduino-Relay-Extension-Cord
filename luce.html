@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+
+<html>
+<head><title>Play with light!</title>
+<script src="jquery-1.9.1.min.js"></script>
+
+<script>
+
+var k = "off"; //variabile che definisce lo stato della luce sulla pagina web. La inizializziamo ad "off".
+
+function toggle(p_val){ //p_val = "on" oppure "off"
+if (!(k == p_val)){ // un comando è stato inviato, si invia il comando all'attuatore.
+$.get("switch.php", { action: p_val })
+.done(function(data) {
+//segue codice per switch dell'img.
+if (p_val == "on") {
+$('#icona_luce').attr("src", "light-on.png");
+} else {
+$('#icona_luce').attr("src", "light-off.png");
+}
+k = p_val;
+});
+}
+
+}
+
+
+function img_click(){
+if (k == "off"){
+toggle("on");
+}
+else
+toggle("off");
+
+}
+
+
+function check_status(){
+$.get("switch.php?status", function(data) {
+  toggle(data); // a prescindere dal valore, con questa funzione richamata ciclicamente si verifica la sincronizzazione tra pagina web e attuatore.
+});
+
+}
+
+setInterval("check_status()", 3000);
+
+</script>
+
+</head>
+<body>
+
+<center>
+<br/><br/>
+<a href="#" onclick="img_click();"><img src="light-off.png" id="icona_luce" /></a>
+
+</center>
+
+</body>
+</html>
